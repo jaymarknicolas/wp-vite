@@ -105,18 +105,25 @@ Copy code if functions.php don't exists
 touch functions.php
 ```
 ```php
-function theme_enqueue_assets() {
-    if (defined('IS_VITE_DEVELOPMENT') && IS_VITE_DEVELOPMENT === true) {
-        add_filter('script_loader_tag', function($tag, $handle, $src) {
-            if (in_array($handle, ['vite-client', 'theme-scripts'])) {
-                return '<script type="module" src="' . esc_url($src) . '"></script>';
-            }
-            return $tag;
-        }, 10, 3);
+<?php
 
-        wp_enqueue_script('vite-client', 'http://localhost:3000/@vite/client', [], null);
-        wp_enqueue_script('theme-scripts', 'http://localhost:3000/src/main.js', [], null);
-    } else {
+function theme_enqueue_assets() {
+    // Development mode
+    if (defined('IS_VITE_DEVELOPMENT') && IS_VITE_DEVELOPMENT === true) {
+       add_action('wp_footer', function() {
+            echo '<script type="importmap">';
+            echo json_encode([
+                'imports' => [
+                    'vite' => 'http://localhost:3000/@vite/client',
+                ]
+            ]);
+            echo '</script>';
+            echo '<script type="module" src="http://localhost:3000/@vite/client"></script>';
+            echo '<script type="module" src="http://localhost:3000/src/main.js"></script>';
+        });
+    } 
+    // Production mode
+    else {
         if (file_exists(get_template_directory() . '/dist/manifest.json')) {
             $manifest = json_decode(file_get_contents(get_template_directory() . '/dist/manifest.json'), true);
             
