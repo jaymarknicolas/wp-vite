@@ -91,7 +91,9 @@ export default defineConfig({
 ```
 
 ### 6. Add to `functions.php`
-
+```bash
+touch vite.config.js
+```
 ```php
 function theme_enqueue_assets() {
     if (defined('IS_VITE_DEVELOPMENT') && IS_VITE_DEVELOPMENT === true) {
