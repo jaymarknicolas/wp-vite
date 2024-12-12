@@ -39,6 +39,13 @@ mkdir -p src/scss src/js
 touch src/main.js src/scss/main.scss src/js/app.js
 ```
 
+Add the following to `src/main.js`:
+
+```javascript
+import "./scss/main.scss";
+import "./js/app.js";
+```
+
 ### 4. Create Configuration Files
 
 #### `vite.config.js`
