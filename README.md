@@ -54,35 +54,36 @@ touch vite.config.js
 ```
 
 ```javascript
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
 export default defineConfig({
-    build: {
-        outDir: 'dist',
-        manifest: true,
-        rollupOptions: {
-            input: 'src/main.js',
-        },
+  build: {
+    outDir: "dist",
+    manifest: true,
+    rollupOptions: {
+      input: "src/main.js",
     },
-    server: {
-        cors: true,
-        port: 3000,
-        strictPort: true,
-        hmr: {
-            host: 'localhost',
-        },
+  },
+  server: {
+    cors: true,
+    port: 3000,
+    strictPort: true,
+    hmr: {
+      host: "localhost",
     },
     css: {
-        preprocessorOptions: {
-            scss: {
-                additionalData: `
-                    @import "./src/scss/variables";
-                    @import "./src/scss/mixins";
-                `,
-            },
+      preprocessorOptions: {
+        scss: {
+          additionalData: `
+          @import "./src/scss/variables";
+          @import "./src/scss/mixins";
+        `,
         },
+      },
     },
+  },
 });
+
 ```
 
 ### 5. Add to `package.json`
