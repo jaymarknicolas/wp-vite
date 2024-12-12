@@ -42,6 +42,9 @@ touch src/main.js src/scss/main.scss src/js/app.js
 ### 4. Create Configuration Files
 
 #### `vite.config.js`
+```bash
+touch vite.config.js
+```
 
 ```javascript
 import { defineConfig } from 'vite';
