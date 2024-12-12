@@ -36,7 +36,7 @@ define('IS_VITE_DEVELOPMENT', true); // Set to false in production
 
 ```bash
 mkdir -p src/scss src/js
-touch src/main.js src/scss/main.scss src/js/app.js
+touch src/main.js src/scss/main.scss src/js/app.js src/scss/variables.scss src/scss/mixins.scss
 ```
 
 Add the following to `src/main.js`:
