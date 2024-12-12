@@ -91,8 +91,10 @@ export default defineConfig({
 ```
 
 ### 6. Add to `functions.php`
+
+Copy code if functions.php don't exists
 ```bash
-touch vite.config.js
+touch functions.php
 ```
 ```php
 function theme_enqueue_assets() {
