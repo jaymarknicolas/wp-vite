@@ -124,22 +124,26 @@ function theme_enqueue_assets() {
     } 
     // Production mode
     else {
-        if (file_exists(get_template_directory() . '/dist/manifest.json')) {
-            $manifest = json_decode(file_get_contents(get_template_directory() . '/dist/manifest.json'), true);
+        if (file_exists(get_stylesheet_directory() . '/dist/.vite/manifest.json')) {
+
+            $manifest = json_decode(file_get_contents(get_stylesheet_directory() . '/dist/.vite/manifest.json'), true);
             
+            // Enqueue CSS files
             if (isset($manifest['src/main.js']['css'])) {
                 foreach ($manifest['src/main.js']['css'] as $cssFile) {
-                    wp_enqueue_style('theme-styles', get_template_directory_uri() . '/dist/' . $cssFile, [], null);
+                    wp_enqueue_style('theme-styles', get_stylesheet_directory_uri() . '/dist/' . $cssFile, [], null);
                 }
             }
             
             add_action('wp_footer', function() use ($manifest) {
                 $js_file = $manifest['src/main.js']['file'];
-                echo '<script type="module" src="' . get_template_directory_uri() . '/dist/' . $js_file . '"></script>';
+                echo '<script type="module" src="' . get_stylesheet_directory_uri() . '/dist/' . $js_file . '"></script>';
             });
+            
         }
     }
 }
+
 add_action('wp_enqueue_scripts', 'theme_enqueue_assets');
 ```
 
